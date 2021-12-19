@@ -6,6 +6,15 @@ const joiOptions = {
   abortEarly: false,
 };
 
+const updateSchema = Joi.object({
+  firstName: Joi.string().alphanum().min(3).max(30).required(),
+
+  lastName: Joi.string().alphanum().min(3).max(30).required(),
+
+  dateOfBirth: Joi.date(),
+
+});
+
 const createSchema = Joi.object({
   firstName: Joi.string().alphanum().min(3).max(30).required(),
 
@@ -43,9 +52,15 @@ function validateCreate(req, res, next) {
 function validateAuth(req, res, next) {
   const { error, value } = authSchema.validate(req.body, joiOptions);
 
-  if (!error || error.details.length === 0) next();
+  if (!error || error.details.length === 0) return next();
 
   joiError(error, res);
 }
+function validateUpdate(req, res, next) {
+  const { error, value } = updateSchema.validate(req.body, joiOptions);
 
-module.exports = { validateCreate, validateAuth };
+  if (!error || error.details.length === 0) return next();
+
+  joiError(error, res);
+}
+module.exports = { validateCreate, validateAuth, validateUpdate };

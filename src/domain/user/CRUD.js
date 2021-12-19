@@ -13,19 +13,34 @@ async function create(req, res, next) {
     userData.password = hash;
   });
   const userNew = await user.create(userData);
-  return res.send(userNew);
+  return res.sendStatus(201).send(userNew);
 }
 
-function read(req, res, next) {
-  return res.send("POST USER CALLED");
+async function read(req, res, next) {
+  const users = await user.find({});
+  return res.sendStatus(200).send(users);
 }
 
-function update(req, res, next) {
-  return res.send("POST USER CALLED");
+async function update(req, res, next) {
+  const userID = req.params.user_id
+  await user.findOneAndUpdate(
+    { _id: userID },
+    req.body,
+    { upsert: true, new: true },
+    (err, doc) => {
+      return res.sendStatus(200).send(doc);
+    }
+  );
 }
-
-function del(req, res, next) {
-  return res.send("POST USER CALLED");
+//Implementing Logic Delete
+async function del(req, res, next) {
+  const userID = req.params.user_id
+  await user.findOneAndDelete(
+    { _id: userID },
+    (err) => {
+      return res.sendStatus(204);
+    }
+  );
 }
 
 module.exports = { create, read, update, del };

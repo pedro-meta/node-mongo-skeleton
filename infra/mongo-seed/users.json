@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "61bf36c912a217d4fedf6839"
+  },
+  "firstName": "Pedro",
+  "lastName": "Lemos",
+  "email": "pedro9bee@gmail.com",
+  "password": "$2a$10$jevh.8CrgiplYFHIoDiZN.SEjIWtTBEdub4f/BHpp5HST24uonbUu",
+  "createdAt": {
+    "$date": "2021-12-19T13:42:33.179Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T13:42:33.179Z"
+  },
+  "__v": 0
+}]

@@ -1,14 +1,11 @@
+const {create, read, update, del} = require('../../domain/item/CRUD')
+const {isAuthenticated} = require('../../domain/user/auth')
+const {validateCreate, validateUpdate} = require('./validation/item.validation')
+const rootDomain = "item"
+
 module.exports = router => {
-  router.get('/item', (req, res, next) =>{
-      return res.send("GET ITEM CALLED");
-  })
-  router.post('/item', (req, res, next) =>{
-      return res.send("POST ITEM CALLED");
-  })
-  router.put('/item/:item_id', (req, res, next) =>{
-      return res.send("PUT ITEM CALLED");
-  })
-  router.delete('/item/:item_id', (req, res, next) =>{
-      return res.send("DELETE ITEM CALLED");
-  })
+  router.get(`/${rootDomain}`,read)
+  router.post(`/${rootDomain}`, validateCreate, create)
+  router.put(`/${rootDomain}:item_id`, validateUpdate, update)
+  router.delete(`/${rootDomain}/:item_id`, del)
 }
