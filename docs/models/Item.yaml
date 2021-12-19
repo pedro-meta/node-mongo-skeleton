@@ -1,0 +1,40 @@
+description: Losted Item
+type: object
+x-examples:
+  example-1:
+    _id: string
+    description: string
+    status: string
+    lost_date: date
+    found_date: date
+    owner_id: string
+properties:
+  _id:
+    type: string
+    minLength: 1
+  description:
+    type: string
+    minLength: 1
+  status:
+    type: string
+    minLength: 1
+  lost_date:
+    type: string
+    minLength: 1
+  found_date:
+    type: string
+    minLength: 1
+  owner_id:
+    type: string
+    minLength: 1
+required:
+  - status
+  - found_date
+  - owner_id
+examples:
+  - _id: string
+    description: string
+    status: string
+    lost_date: string
+    found_date: string
+    owner_id: string

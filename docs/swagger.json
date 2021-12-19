@@ -1,0 +1,622 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "LostAndFound",
+    "version": "1.0",
+    "description": "Lost and Found Application to Airports. The customer can search and found one lost item in one airport. The support team can create one list item entry to be found.",
+    "contact": {
+      "name": "Pedro Lemos",
+      "email": "pedro9bee@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://api.airport.ai",
+      "description": "Airport.ai"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "parameters": [],
+      "get": {
+        "summary": "Get User Info by User ID",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListUsers"
+          },
+          "404": {
+            "description": "User Not Found"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "operationId": "get-users-userId",
+        "description": "Retrieve the information of the user with the matching user ID."
+      },
+      "post": {
+        "summary": "Create New User",
+        "operationId": "post-user",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "New User Bob Fellow": {
+                    "value": {
+                      "id": 12,
+                      "firstName": "Bob",
+                      "lastName": "Fellow",
+                      "email": "bob.fellow@gmail.com",
+                      "dateOfBirth": "1996-08-24",
+                      "emailVerified": false,
+                      "createDate": "2020-11-18"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Required Information"
+          },
+          "409": {
+            "description": "Email Already Taken"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "models/User.yaml"
+                }
+              }
+            }
+          },
+          "description": "Post the necessary fields for the API to create a new user."
+        },
+        "description": "Create a new user."
+      },
+      "patch": {
+        "summary": "Update User Information",
+        "operationId": "patch-users-userId",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "Updated User Rebecca Baker": {
+                    "value": {
+                      "id": 13,
+                      "firstName": "Rebecca",
+                      "lastName": "Baker",
+                      "email": "rebecca@gmail.com",
+                      "dateOfBirth": "1985-10-02",
+                      "emailVerified": false,
+                      "createDate": "2019-08-24"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found"
+          },
+          "409": {
+            "description": "Email Already Taken"
+          }
+        },
+        "description": "Update the information of an existing user.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "If a new email is given, the user's email verified property will be set to false."
+                  },
+                  "dateOfBirth": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Update First Name": {
+                  "value": {
+                    "firstName": "Rebecca"
+                  }
+                },
+                "Update Email": {
+                  "value": {
+                    "email": "rebecca@gmail.com"
+                  }
+                },
+                "Update Last Name & Date of Birth": {
+                  "value": {
+                    "lastName": "Baker",
+                    "dateOfBirth": "1985-10-02"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Patch user properties to update."
+        }
+      }
+    },
+    "/user/{id}": {
+      "put": {
+        "summary": "Completely Update one user",
+        "operationId": "put-user",
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        },
+        "description": "Update One User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "models/User.yaml"
+              }
+            }
+          },
+          "description": "One User to Update"
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "description": "Deletes One User",
+        "summary": "Deletes One User",
+        "tags": [
+          "User"
+        ],
+        "operationId": "delete-user-id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "description": "Make user Login",
+        "summary": "Login an user",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "accessToken"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "accessToken": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-user-login"
+      }
+    },
+    "/item": {
+      "get": {
+        "summary": "Get All Items",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListItems"
+          }
+        },
+        "operationId": "get-all-item",
+        "description": "Get All Items"
+      },
+      "post": {
+        "summary": "Creates One Item",
+        "tags": [
+          "Item"
+        ],
+        "operationId": "post-item",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Create one Item",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Item"
+        }
+      },
+      "patch": {
+        "description": "Updates partially all Item Elements",
+        "tags": [
+          "Item"
+        ],
+        "summary": "Updates partially all Item Elements",
+        "operationId": "patch-item",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ListItems"
+          }
+        }
+      }
+    },
+    "/item/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get One Item",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Item"
+          }
+        },
+        "operationId": "get-item-id",
+        "description": "Get One Item"
+      },
+      "put": {
+        "summary": "Completely Update One Item",
+        "tags": [
+          "Item"
+        ],
+        "operationId": "put-item-id",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Item"
+          }
+        },
+        "description": "Completely Update One Item",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Item"
+        }
+      },
+      "delete": {
+        "summary": "Delete One Item",
+        "tags": [
+          "Item"
+        ],
+        "operationId": "delete-item-id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "description": "Delete one Item"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user."
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1997-10-31"
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified."
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the user was created."
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "emailVerified"
+        ]
+      },
+      "Item": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lost_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "found_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "_id",
+          "description",
+          "status",
+          "lost_date",
+          "found_date",
+          "owner_id"
+        ],
+        "x-examples": {
+          "example-1": {
+            "_id": "string",
+            "description": "string",
+            "status": "string",
+            "lost_date": "string",
+            "found_date": "string",
+            "owner_id": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {},
+    "requestBodies": {
+      "User": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "models/User.yaml"
+            }
+          }
+        }
+      },
+      "Item": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "models/Item.yaml"
+            }
+          }
+        }
+      },
+      "ListItem": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "models/Item.yaml"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "x-examples": {
+                "example-1": {
+                  "code": "number",
+                  "description": "string"
+                }
+              },
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "code",
+                "description"
+              ]
+            },
+            "examples": {
+              "ExampleNotFound": {
+                "value": {
+                  "code": 404,
+                  "description": "Not Found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "x-examples": {
+                "example-1": {
+                  "code": "number",
+                  "description": "string",
+                  "stackTrace": "string"
+                }
+              },
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "stackTrace": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "code",
+                "description",
+                "stackTrace"
+              ]
+            },
+            "examples": {
+              "mainSampleError": {
+                "value": {
+                  "code": 500,
+                  "description": "Could Not Save on MongoDB",
+                  "stackTrace": "...connectionTimeOut: 50000"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ListItems": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "models/Item.yaml"
+              }
+            }
+          }
+        }
+      },
+      "ListUsers": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "models/User.yaml"
+              }
+            }
+          }
+        }
+      },
+      "Item": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "models/Item.yaml"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Item"
+    },
+    {
+      "name": "User"
+    }
+  ],
+  "x-extension-1": null
+}

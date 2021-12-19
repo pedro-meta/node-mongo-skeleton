@@ -1,0 +1,31 @@
+description: 'User of Application'
+type: object
+x-examples:
+  example-1:
+    _id: string
+    firstName: string
+    lastName: string
+    email: string
+    age: number
+properties:
+  _id:
+    type: string
+    minLength: 1
+  firstName:
+    type: string
+    minLength: 1
+    description: First Name of the Person
+  lastName:
+    type: string
+    minLength: 1
+    description: Last Name of the Person
+  email:
+    type: string
+    minLength: 1
+  age:
+    type: string
+    minLength: 1
+required:
+  - firstName
+  - lastName
+  - age

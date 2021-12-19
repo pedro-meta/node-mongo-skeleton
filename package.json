@@ -2,24 +2,33 @@
   "name": "node-js-skeleton",
   "version": "1.0.0",
   "scripts": {
-    "start": "node app.js",
-    "test": "NODE_ENV=test mocha --recursive --inspect --exit test",
-    "test-win": "set NODE_ENV=test&& mocha --recursive --inspect --exit test"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "NODE_ENV=test jest",
+    "test-win": "set NODE_ENV=test&& jest"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv-safe": "^8.2.0",
     "express": "4.17.1",
+    "fast-glob": "^3.2.7",
     "helmet": "4.5.0",
+    "joi": "^17.5.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "4.17.21",
     "method-override": "3.0.0",
     "moment": "2.29.1",
     "moment-timezone": "0.5.33",
     "mongoose": "5.13.13",
+    "nodemon": "^2.0.15",
     "request": "2.88.2",
-    "request-promise": "4.2.6"
+    "request-promise": "4.2.6",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "7.24.0",
+    "jest": "^27.4.5",
     "mocha": "8.3.2",
     "sinon": "10.0.1"
   }

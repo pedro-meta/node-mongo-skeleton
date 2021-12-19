@@ -4,6 +4,11 @@
 'use strict';
 
 let app = require('express')();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../docs/swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const PORT = 3000;
 
 // Set up Express.

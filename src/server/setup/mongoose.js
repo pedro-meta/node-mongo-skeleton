@@ -4,11 +4,11 @@
 'use strict';
 
 let mongoose = require('mongoose');
-const DATABASE_URL = 'mongodb://127.0.0.1:27017/AirportAI';
+const DATABASE_URL = 'mongodb://127.0.0.1:27017/airport-ai';
 
 
 module.exports = setup;
-
+ 
 /**
 * Sets up MongoDB connection.
 */
