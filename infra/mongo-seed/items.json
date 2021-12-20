@@ -1,0 +1,134 @@
+[{
+  "_id": {
+    "$oid": "61bfc3850010f4e4a190ae05"
+  },
+  "type_of_product": "mobile",
+  "brand": "samsung",
+  "color": "red",
+  "description": "Samsung Galaxy Note 20",
+  "lost_date": {
+    "$date": "2021-12-06T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:43:01.461Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:43:01.461Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc39f0010f4e4a190ae07"
+  },
+  "type_of_product": "mobile",
+  "brand": "samsung",
+  "color": "blue",
+  "description": "Samsung Galaxy Note S20",
+  "lost_date": {
+    "$date": "2021-12-06T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:43:27.536Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:43:27.536Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc3a90010f4e4a190ae09"
+  },
+  "type_of_product": "mobile",
+  "brand": "samsung",
+  "color": "white",
+  "description": "Samsung Galaxy Note S20",
+  "lost_date": {
+    "$date": "2021-12-06T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:43:37.607Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:43:37.607Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc3d40010f4e4a190ae0b"
+  },
+  "type_of_product": "mobile",
+  "brand": "iphone",
+  "color": "white",
+  "description": "IPhone 8 128GB",
+  "lost_date": {
+    "$date": "2021-12-12T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:44:20.597Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:44:20.597Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc4100010f4e4a190ae0d"
+  },
+  "type_of_product": "mobile",
+  "brand": "iphone",
+  "color": "white",
+  "description": "IPhone 13 128GB",
+  "lost_date": {
+    "$date": "2021-12-14T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:45:20.609Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:45:20.609Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc4170010f4e4a190ae0f"
+  },
+  "type_of_product": "mobile",
+  "brand": "iphone",
+  "color": "white",
+  "description": "IPhone 13 64GB",
+  "lost_date": {
+    "$date": "2021-12-14T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:45:27.481Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:45:27.481Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfc44b0010f4e4a190ae11"
+  },
+  "type_of_product": "watch",
+  "brand": "rolex",
+  "color": "gold",
+  "description": "Rolex gold beatiful",
+  "lost_date": {
+    "$date": "2021-12-15T23:07:48.442Z"
+  },
+  "status": "LOST",
+  "createdAt": {
+    "$date": "2021-12-19T23:46:19.488Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:46:19.488Z"
+  },
+  "__v": 0
+}]
