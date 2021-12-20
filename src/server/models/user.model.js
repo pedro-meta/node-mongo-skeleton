@@ -3,11 +3,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    firstName: {
+    first_name: {
       type: String,
       required: true
     },
-    lastName: {
+    last_name: {
       type: String,
       required: true
     },
@@ -19,6 +19,10 @@ const userSchema = new Schema(
       dropDups: true 
     },
     password: {
+      type: String,
+      required: true
+    },
+    type_of: {
       type: String,
       required: true,
       select: false

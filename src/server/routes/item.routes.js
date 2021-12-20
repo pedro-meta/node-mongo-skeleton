@@ -6,6 +6,6 @@ const rootDomain = "item"
 module.exports = router => {
   router.get(`/${rootDomain}`,read)
   router.post(`/${rootDomain}`, validateCreate, create)
-  router.put(`/${rootDomain}:item_id`, validateUpdate, update)
+  router.put(`/${rootDomain}/:item_id`, validateUpdate, update)
   router.delete(`/${rootDomain}/:item_id`, del)
 }

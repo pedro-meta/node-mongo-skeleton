@@ -9,6 +9,12 @@ function joiError(error, res) {
         });
       });
     }
+    if (error.type === "string.alphanum") {
+      responseError.push({
+        field: error.path[0],
+        message: "must contain only alpha-numeric characters",
+      });
+    }
     if (error.type === "object.unknown") {
       responseError.push({
         field: error.path[0],

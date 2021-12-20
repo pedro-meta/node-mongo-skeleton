@@ -7,18 +7,17 @@ const joiOptions = {
 };
 
 const updateSchema = Joi.object({
-  firstName: Joi.string().alphanum().min(3).max(30).required(),
+  first_name: Joi.string().alphanum().min(3).max(30).required(),
 
-  lastName: Joi.string().alphanum().min(3).max(30).required(),
+  last_name: Joi.string().alphanum().min(3).max(30).required(),
 
   dateOfBirth: Joi.date(),
-
 });
 
 const createSchema = Joi.object({
-  firstName: Joi.string().alphanum().min(3).max(30).required(),
+  first_name: Joi.string().alphanum().min(3).max(30).required(),
 
-  lastName: Joi.string().alphanum().min(3).max(30).required(),
+  last_name: Joi.string().alphanum().min(3).max(30).required(),
 
   email: Joi.string()
     .email({
@@ -28,6 +27,8 @@ const createSchema = Joi.object({
     .required(),
 
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+
+  type_of: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
 
   repeat_password: Joi.string()
     .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))

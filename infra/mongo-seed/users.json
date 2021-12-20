@@ -1,16 +1,97 @@
 [{
   "_id": {
-    "$oid": "61bf36c912a217d4fedf6839"
+    "$oid": "61bfb97fa4aca4c858a7aee2"
   },
-  "firstName": "Pedro",
-  "lastName": "Lemos",
-  "email": "pedro9bee@gmail.com",
-  "password": "$2a$10$jevh.8CrgiplYFHIoDiZN.SEjIWtTBEdub4f/BHpp5HST24uonbUu",
+  "first_name": "Kelly",
+  "last_name": "Carvalho",
+  "email": "kelly.carvalho.ca@gmail.com",
+  "password": "$2a$10$vJ63zII8S.zybDn51RugXuapJ/ILtQYbGVUzlxgeRvOh.Ym3TNwFO",
+  "type_of": "Admin",
   "createdAt": {
-    "$date": "2021-12-19T13:42:33.179Z"
+    "$date": "2021-12-19T23:00:15.027Z"
   },
   "updatedAt": {
-    "$date": "2021-12-19T13:42:33.179Z"
+    "$date": "2021-12-19T23:00:15.027Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfba0465881dc995ca1566"
+  },
+  "first_name": "Pedro",
+  "last_name": "Lemos",
+  "email": "pedro9bee@gmail.com",
+  "password": "$2a$10$bE305iqJibPFFANPgMDIEeQnV9oweMOzxuvBe7ZH7wks.OaOctCBm",
+  "type_of": "User",
+  "createdAt": {
+    "$date": "2021-12-19T23:02:28.517Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:02:28.517Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfbadb35a7cacba4ab1fcf"
+  },
+  "first_name": "Kaua",
+  "last_name": "Carvalho",
+  "email": "kaua.carvalho@gmail.com",
+  "password": "$2a$10$uWQ6YN6D0OnX0cLiPrWtJe32MmHrfDI9ps9DWW18Naz8V0Ao5Pdla",
+  "type_of": "User",
+  "createdAt": {
+    "$date": "2021-12-19T23:06:03.952Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:06:03.952Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfbb4423aba3cc84af1cbe"
+  },
+  "first_name": "Luiza",
+  "last_name": "Lemos",
+  "email": "luiza.lemos@gmail.com",
+  "password": "$2a$10$F.35BnNsEvImDRbgOQbrluQD9lJbDeGnboCo2OM4EQRtv.xPx3Urq",
+  "type_of": "User",
+  "createdAt": {
+    "$date": "2021-12-19T23:07:48.442Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:07:48.442Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfbb7523aba3cc84af1cc1"
+  },
+  "first_name": "Priscila",
+  "last_name": "Santos",
+  "email": "priscila.santos@gmail.com",
+  "password": "$2a$10$pl440JH.VQgeayCmpX0CqOtA8fzMjbn2CERmHVIq1UsZRxELrmzRu",
+  "type_of": "User",
+  "createdAt": {
+    "$date": "2021-12-19T23:08:37.130Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:08:37.130Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfbb8c36f77dcda4f4b34c"
+  },
+  "first_name": "Leisia",
+  "last_name": "Santos",
+  "email": "leisia.santos@gmail.com",
+  "password": "$2a$10$cjNjEwM5TYmQfZgjLTQc..NeM/FAO4ftt7XvuqTy5mK2XhouAcoAO",
+  "type_of": "User",
+  "createdAt": {
+    "$date": "2021-12-19T23:09:00.761Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-19T23:09:00.761Z"
   },
   "__v": 0
 }]

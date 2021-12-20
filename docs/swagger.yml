@@ -44,8 +44,8 @@ paths:
                 New User Pedro Lemos:
                   value:
                     id: 61bf36c912a217d4fedf6839
-                    firstName: Pedro
-                    lastName: Lemos
+                    first_name: Pedro
+                    last_name: Lemos
                     email: pedro.lemos@gmail.com
                     dateOfBirth: '1979-06-02'
                     emailVerified: true
@@ -79,8 +79,8 @@ paths:
                 Updated User Rebecca Baker:
                   value:
                     id: 61bf36c912a217d4fedf6839
-                    firstName: Luiza
-                    lastName: Lemos
+                    first_name: Luiza
+                    last_name: Lemos
                     email: luiza.lemos@gmail.com
                     dateOfBirth: '2015-29-03'
                     emailVerified: false
@@ -96,9 +96,9 @@ paths:
             schema:
               type: object
               properties:
-                firstName:
+                first_name:
                   type: string
-                lastName:
+                last_name:
                   type: string
                 email:
                   type: string
@@ -110,13 +110,13 @@ paths:
             examples:
               Update First Name:
                 value:
-                  firstName: Rebecca
+                  first_name: Rebecca
               Update Email:
                 value:
                   email: rebecca@gmail.com
               Update Last Name & Date of Birth:
                 value:
-                  lastName: Baker
+                  last_name: Baker
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
   '/user/{id}':
@@ -291,9 +291,9 @@ components:
         id:
           type: integer
           description: Unique identifier for the given user.
-        firstName:
+        first_name:
           type: string
-        lastName:
+        last_name:
           type: string
         email:
           type: string
@@ -311,8 +311,8 @@ components:
           description: The date that the user was created.
       required:
         - id
-        - firstName
-        - lastName
+        - first_name
+        - last_name
         - email
         - emailVerified
     Item:

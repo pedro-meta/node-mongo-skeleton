@@ -3,19 +3,19 @@ type: object
 x-examples:
   example-1:
     _id: string
-    firstName: string
-    lastName: string
+    first_name: string
+    last_name: string
     email: string
     age: number
 properties:
   _id:
     type: string
     minLength: 1
-  firstName:
+  first_name:
     type: string
     minLength: 1
     description: First Name of the Person
-  lastName:
+  last_name:
     type: string
     minLength: 1
     description: Last Name of the Person
@@ -26,6 +26,6 @@ properties:
     type: string
     minLength: 1
 required:
-  - firstName
-  - lastName
+  - first_name
+  - last_name
   - age

@@ -7,25 +7,25 @@ const joiOptions = {
 };
 
 const updateSchema = Joi.object({
-  type_of_product: Joi.string().alphanum().min(3).max(30).required(),
-  brand: Joi.string().alphanum().min(3).max(30).required(),
-  color: Joi.string().alphanum().min(3).max(30).required(),
-  description: Joi.string().alphanum().min(3).max(30).required(),
-  status: Joi.string().alphanum().min(3).max(30).required(),
-  owner_id: Joi.string().alphanum().min(3).max(30).required(),
-  lost_date: Joi.string().alphanum().min(3).max(30).required(),
-  found_date: Joi.string().alphanum().min(3).max(30).required(),
+  type_of_product: Joi.string(),
+  brand: Joi.string(),
+  color: Joi.string(),
+  description: Joi.string(),
+  status: Joi.string(),
+  owner_id: Joi.string(),
+  lost_date: Joi.string(),
+  found_date: Joi.string(),
 });
 //type_of_product, brand, color, description, status, owner_id, lost_date, found_date
 const createSchema = Joi.object({
   type_of_product: Joi.string().alphanum().min(3).max(30).required(),
-  brand: Joi.string().alphanum().min(3).max(30).required(),
-  color: Joi.string().alphanum().min(3).max(30).required(),
-  description: Joi.string().alphanum().min(3).max(30).required(),
-  status: Joi.string().alphanum().min(3).max(30).required(),
-  owner_id: Joi.string().alphanum().min(3).max(30).required(),
-  lost_date: Joi.string().alphanum().min(3).max(30).required(),
-  found_date: Joi.string().alphanum().min(3).max(30).required(),
+  brand: Joi.string().alphanum().min(3).max(30),
+  color: Joi.string().alphanum().required(),
+  description: Joi.string().required(),
+  // status: Joi.string().alphanum().min(3).max(30).required(),
+  // owner_id: Joi.string().alphanum().min(3).max(30).required(),
+  lost_date: Joi.date(),
+  // found_date: Joi.string().alphanum().min(3).max(30).required(),
 });
 
 function validateCreate(req, res, next) {
@@ -42,4 +42,4 @@ function validateUpdate(req, res, next) {
 
   joiError(error, res);
 }
-module.exports = { validateCreate, validateAuth, validateUpdate };
+module.exports = { validateCreate, validateUpdate };

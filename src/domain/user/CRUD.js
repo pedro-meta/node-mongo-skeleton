@@ -12,13 +12,21 @@ async function create(req, res, next) {
   await bcrypt.hash(userData.password, 10).then(function (hash) {
     userData.password = hash;
   });
-  const userNew = await user.create(userData);
-  return res.sendStatus(201).send(userNew);
+  const userNew = await user.create(userData)
+  const userJSON = await  userNew.toJSON();
+  delete userJSON.password
+
+  return res.status(201).send(userJSON);
 }
 
 async function read(req, res, next) {
-  const users = await user.find({});
-  return res.sendStatus(200).send(users);
+  const users = await user.find({}).select("-password -__v");
+  // const usersJSON = await users.toArray();
+  users.map(async(user)=>{
+    delete user.password;
+    return user
+  })
+  return res.status(200).send(users);
 }
 
 async function update(req, res, next) {

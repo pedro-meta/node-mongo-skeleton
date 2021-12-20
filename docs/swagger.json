@@ -55,8 +55,8 @@
                   "New User Pedro Lemos": {
                     "value": {
                       "id": "61bf36c912a217d4fedf6839",
-                      "firstName": "Pedro",
-                      "lastName": "Lemos",
+                      "first_name": "Pedro",
+                      "last_name": "Lemos",
                       "email": "pedro.lemos@gmail.com",
                       "dateOfBirth": "1979-06-02",
                       "emailVerified": true,
@@ -107,8 +107,8 @@
                   "Updated User Rebecca Baker": {
                     "value": {
                       "id": "61bf36c912a217d4fedf6839",
-                      "firstName": "Luiza",
-                      "lastName": "Lemos",
+                      "first_name": "Luiza",
+                      "last_name": "Lemos",
                       "email": "luiza.lemos@gmail.com",
                       "dateOfBirth": "2015-29-03",
                       "emailVerified": false,
@@ -133,10 +133,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "first_name": {
                     "type": "string"
                   },
-                  "lastName": {
+                  "last_name": {
                     "type": "string"
                   },
                   "email": {
@@ -151,7 +151,7 @@
               "examples": {
                 "Update First Name": {
                   "value": {
-                    "firstName": "Rebecca"
+                    "first_name": "Rebecca"
                   }
                 },
                 "Update Email": {
@@ -161,7 +161,7 @@
                 },
                 "Update Last Name & Date of Birth": {
                   "value": {
-                    "lastName": "Baker",
+                    "last_name": "Baker",
                     "dateOfBirth": "1985-10-02"
                   }
                 }
@@ -429,10 +429,10 @@
             "type": "integer",
             "description": "Unique identifier for the given user."
           },
-          "firstName": {
+          "first_name": {
             "type": "string"
           },
-          "lastName": {
+          "last_name": {
             "type": "string"
           },
           "email": {
@@ -456,8 +456,8 @@
         },
         "required": [
           "id",
-          "firstName",
-          "lastName",
+          "first_name",
+          "last_name",
           "email",
           "emailVerified"
         ]
