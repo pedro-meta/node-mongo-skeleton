@@ -1,41 +1,47 @@
-const user = require("../../server/models/user.model");
-const refreshTokenModel = require("../../server/models/refreshToken.model");
-const tokenBlackListModel = require("../../server/models/tokenBlackList.model");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+/* eslint-disable require-jsdoc */
+const user = require('../../server/models/user.model');
+const refreshTokenModel = require('../../server/models/refreshToken.model');
+const tokenBlackListModel = require('../../server/models/tokenBlackList.model');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-const SECRET = `59127bfe1f2b05e27c4f68ca54f621ccc387cbc4120f23ba85f4a54872339773`;
-async function isAuthenticated(req, res, next){
-  const { authorization } = req.headers;
+const SECRET = `59127bfe1f2b05e27c4f68ca54f621ccc387c4120f23ba85f4a54872339773`;
 
-  if(await isTokenBlackList(authorization)) return res.send({
-    message: "This Token is Blocked"
-  })
+async function isAuthenticated(req, res, next) {
+  const {authorization} = req.headers;
+
+  if (await isTokenBlackList(authorization)) {
+    return res.send({
+      message: 'This Token is Blocked',
+    });
+  };
   try {
-    const userInfo = jwt.verify(authorization, SECRET);
-    return next();    
+    jwt.verify(authorization, SECRET);
+    return next();
   } catch (error) {
-    return res.json({
-      error: error.message
-    })
+    return res.status(401).json({
+      error: error.message,
+    });
   }
 }
-async function auth(req, res, next) {
+async function auth(req, res, _next) {
   const userData = req.body;
   const userDB = await user.findOne({
     email: userData.email,
   });
 
-  if (!userDB)
+  if (!userDB) {
     return res.send({
       message: `User is not Find`,
     });
+  }
 
   const valid = await bcrypt.compareSync(userData.password, userDB.password);
-  if (!valid)
+  if (!valid) {
     return res.send({
       message: `Wrong Password`,
     });
+  }
   const userJSON = userDB.toJSON();
   delete userJSON.password;
 
@@ -45,18 +51,16 @@ async function auth(req, res, next) {
   const expiresIn = new Date().getTime();
   +3000;
 
-  await refreshTokenModel.findOneAndUpdate(
-    { userID: userDB.id, token: accessToken },
-    { userID: userDB.id, token: accessToken },
-    { upsert: true, new: true },
-    (err, doc) => {
-      return res.send({
-        accessToken,
-        refreshToken: doc.id,
-        expiresIn,
-      });
-    }
+  const doc = await refreshTokenModel.findOneAndUpdate(
+      {userID: userDB.id, token: accessToken},
+      {userID: userDB.id, token: accessToken},
+      {upsert: true, new: true},
   );
+  return res.send({
+    accessToken,
+    refreshToken: doc.id,
+    expiresIn,
+  });
 }
 async function isTokenBlackList(token) {
   const tokenBlackList = await tokenBlackListModel.findOne({
@@ -66,43 +70,45 @@ async function isTokenBlackList(token) {
   return false;
 }
 async function addTokenBlackList(token) {
-  const tokenBlackList = await tokenBlackListModel.create({
+  await tokenBlackListModel.create({
     token,
   });
 }
-async function refresh(req, res, next) {
-  const { authorization } = req.headers;
+async function refresh(req, res, _next) {
+  const {authorization} = req.headers;
 
-  
-  if(await isTokenBlackList(authorization)) return res.send({
-    message: "This Token is Blocked"
-  })
-  
+
+  if (await isTokenBlackList(authorization)) {
+    return res.send({
+      message: 'This Token is Blocked',
+    });
+  };
+
   const userInfo = jwt.verify(authorization, SECRET);
-  
+
   delete userInfo.exp;
   delete userInfo.iat;
-  
+
   const accessToken = jwt.sign(userInfo, SECRET, {
     expiresIn: 3000,
   });
 
-  await addTokenBlackList(authorization)
+  await addTokenBlackList(authorization);
 
   const expiresIn = new Date().getTime();
   +3000;
 
-  const refreshToken = refreshTokenModel.findOneAndUpdate(
-    { userID: userInfo.id, token: authorization },
-    { userID: userInfo.id, token: accessToken },
-    { upsert: true, new: true },
-    (err, doc) => {
-      return res.send({
-        accessToken,
-        refreshToken: doc.id,
-        expiresIn,
-      });
-    }
+  refreshTokenModel.findOneAndUpdate(
+      {userID: userInfo.id, token: authorization},
+      {userID: userInfo.id, token: accessToken},
+      {upsert: true, new: true},
+      (_err, doc) => {
+        return res.send({
+          accessToken,
+          refreshToken: doc.id,
+          expiresIn,
+        });
+      },
   );
 }
-module.exports = { auth, refresh, isAuthenticated };
+module.exports = {auth, refresh, isAuthenticated};

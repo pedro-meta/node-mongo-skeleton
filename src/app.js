@@ -3,7 +3,7 @@
 */
 'use strict';
 
-let app = require('express')();
+const app = require('express')();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../docs/swagger.json');
 

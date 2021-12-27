@@ -29,3 +29,12 @@ If everything is ok, you should see a 'Hello world!' message when you go to 'htt
 1.  Design API's in https://stoplight.io/
 
 npm install --save-dev jest
+
+To remove all docker stuffs and start again
+
+docker-compose down
+docker rm -f $(docker ps -a -q)
+docker container stop $(docker container ls -aq)
+docker volume rm $(docker volume ls -q)
+docker network prune
+docker-compose up -d

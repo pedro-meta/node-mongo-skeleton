@@ -1,5 +1,6 @@
-const Joi = require("joi");
-const { joiError } = require("./joiError");
+/* eslint-disable require-jsdoc */
+const Joi = require('joi');
+const {joiError} = require('./joiError');
 
 const joiOptions = {
   allowUnknown: false,
@@ -20,19 +21,19 @@ const createSchema = Joi.object({
   last_name: Joi.string().alphanum().min(3).max(30).required(),
 
   email: Joi.string()
-    .email({
-      minDomainSegments: 2,
-      tlds: { allow: ["com", "net"] },
-    })
-    .required(),
+      .email({
+        minDomainSegments: 2,
+        tlds: {allow: ['com', 'net']},
+      })
+      .required(),
 
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+  password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
 
-  type_of: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+  type_of: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
 
   repeat_password: Joi.string()
-    .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-    .required(),
+      .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+      .required(),
 
   dateOfBirth: Joi.date(),
 });
@@ -43,7 +44,7 @@ const authSchema = Joi.object({
 });
 
 function validateCreate(req, res, next) {
-  const { error, value } = createSchema.validate(req.body, joiOptions);
+  const {error} = createSchema.validate(req.body, joiOptions);
 
   if (!error || error.details.length === 0) return next();
 
@@ -51,17 +52,17 @@ function validateCreate(req, res, next) {
 }
 
 function validateAuth(req, res, next) {
-  const { error, value } = authSchema.validate(req.body, joiOptions);
+  const {error} = authSchema.validate(req.body, joiOptions);
 
   if (!error || error.details.length === 0) return next();
 
   joiError(error, res);
 }
 function validateUpdate(req, res, next) {
-  const { error, value } = updateSchema.validate(req.body, joiOptions);
+  const {error} = updateSchema.validate(req.body, joiOptions);
 
   if (!error || error.details.length === 0) return next();
 
   joiError(error, res);
 }
-module.exports = { validateCreate, validateAuth, validateUpdate };
+module.exports = {validateCreate, validateAuth, validateUpdate};
